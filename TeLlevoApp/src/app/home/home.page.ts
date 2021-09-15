@@ -1,26 +1,24 @@
-import { Component } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  dato:String;
+export class HomePage implements OnInit {
+  dato: any;
 
-  constructor(public toastController: ToastController) {}
-  
-  saludar(){
-    this.presentToast()
-  }
-  
-  async presentToast(){
-    const toast = await this.toastController.create({
-      message: 'Hola '+ this.dato,
-      duration: 2000
+  constructor(private ActivatedRoute: ActivatedRoute, private router: Router) {
+    //llamar a la ruta activa y obtener sus parámetros (si es que tiene)
+    this.ActivatedRoute.queryParams.subscribe((params) => {
+      //utilizamos lambda
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.dato = this.router.getCurrentNavigation().extras.state.dato;
+        console.log(this.dato);
+      }
     });
-    toast.present();
   }
 
+  ngOnInit() {}
 }
