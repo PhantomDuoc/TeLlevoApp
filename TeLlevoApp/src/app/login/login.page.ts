@@ -8,7 +8,8 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  dato: String;
+  user: String;
+
   constructor(
     public ToastController: ToastController,
     private router: Router
@@ -23,7 +24,7 @@ export class LoginPage implements OnInit {
   ingresar() {
     //creo un elemento navitagionextras para pasar parámetros
     let navigationExtra: NavigationExtras = {
-      state: { dato: this.dato },
+      state: { dato: this.user },
     };
 
     //utilizar api router para cambiar de página
@@ -36,9 +37,11 @@ export class LoginPage implements OnInit {
 
   async presentToast() {
     const toast = await this.ToastController.create({
-      message: 'Hola ' + this.dato,
+      message: 'Hola ' + this.user,
       duration: 2000,
     });
     toast.present();
   }
 }
+
+
