@@ -1,0 +1,25 @@
+.login-form {
+    top: 35%;
+    border: 1px;
+    border-style: double;
+    position: absolute;
+    width: 30%;
+    border-radius: 5px;
+    padding: 20px;
+    left: 30%;
+}
+
+mat-form-field {
+    width: 80%;
+}
+
+button {
+    text-align: center;
+    margin-left: 17%;
+}
+
+mat-icon {
+    float: left;
+    line-height: 2;
+    margin-right: 10px;
+}

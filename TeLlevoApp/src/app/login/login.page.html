@@ -1,10 +1,75 @@
+<ion-header>
+    <img class="item-banner" src="assets/Banner.png" />
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding-vertical">
+        <ion-card class="ion-text-center">
+            <ion-card-header>
+                <ion-card-title class="ion-text-left">Inicia sesión con tu cuenta DuocUC</ion-card-title>
+            </ion-card-header>
+            <div class="ion-padding vertical">
+                <form [formGroup]="loginForm" (submit)="submit()">
+                    <div>
+                        <mat-form-field class="input-large">
+                            <mat-label>Usuario</mat-label>
+                            <input matInput formControlName="user" [(ngModel)]="user" required />
+                            <mat-error *ngIf="loginForm.controls.user.touched && loginForm.controls.user.invalid">
+                                <span *ngIf="loginForm.controls.user.errors.required">Ingresa tu usuario DuocUC.</span
+                >
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="ion-padding vertical">
+            <mat-form-field class="input-large">
+              <mat-label>Contraseña</mat-label>
+              <input
+                matInput
+                formControlName="password"
+                type="password"
+                required
+              />
+              <mat-error
+                *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid"
+              >
+                <span
+                  *ngIf="loginForm.controls.password.errors.required"
+                  color="warn"
+                  >Ingresa una contraseña.</span
+                >
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="ion-padding-horizontal ion-padding-vertical"
+          >
+            Ingresar
+          </button>
+          <button mat-raised-button color="primary" (click)="crearCuenta()">
+            Crear Cuenta
+          </button>
+
+          <mat-label (click)="restablecer()"
+            >¿Olvidaste tu contraseña?</mat-label
+          >
+        </form>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>
+
+<!--
 <ion-content [fullscreen]="true">
     <ion-title class="ion-padding-top ion-text-center">
         <ion-label>
             <h1></h1>
         </ion-label>
     </ion-title>
-    <div class="ion-padding-vertical">
+    <div class="ion-padding-vertical">-->
+<!-- 
         <ion-card class="ion-text-center">
             <ion-card-title class="ion-text-center">
                 <ion-label>
@@ -26,5 +91,38 @@
             <ion-button shape="block" (click)="ingresar()">Ingresar</ion-button>
             <ion-button shape="block" (click)="restablecer()">Restablecer Contraseña</ion-button>
         </ion-card>
+        -->
+<!--
+        <mat-card tabindex="0">
+            <mat-card-title class="ion-text-center ion-padding-vertical">TeLlevoApp</mat-card-title>
+            <mat-card-subtitle>Inicia sesión con tu cuenta Duoc UC</mat-card-subtitle>
+            <mat-card-content class="ion-text-center">
+                <div class="ion-padding-vertical ion-padding-horizontal">
+                    <mat-form-field appearance="outline" class="">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput type="text" placeholder="" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput type="password" placeholder="" />
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="ion-padding-horizontal">
+                    <button mat-flat-button color="primary" (click)="ingresar()">
+            Ingresar
+          </button>
+                    <button mat-flat-button color="primary" (click)="crearCuenta()">
+            Crear Cuenta
+          </button>
+                </div>
+            </mat-card-actions>
+            <mat-card-footer>
+                <div class="ion-padding-horizontal ion-padding-vertical">
+                    <mat-label (click)="restablecer()">¿Olvidaste tu contraseña?</mat-label>
+                </div>
+            </mat-card-footer>
+        </mat-card>
     </div>
-</ion-content>
+</ion-content> -->
