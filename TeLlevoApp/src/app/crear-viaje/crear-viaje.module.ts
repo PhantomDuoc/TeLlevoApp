@@ -28,7 +28,7 @@ import { CrearViajePage } from './crear-viaje.page';
     MatIconModule,
     MatDividerModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [CrearViajePage]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -10,8 +10,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CrearViajePage implements OnInit {
   user: string;
+  horaSalida: any;
+  tarifa: number;
+  destino: String;
   viajeForm: FormGroup;
-
 
   constructor(
     public ToastController: ToastController,
@@ -33,23 +35,26 @@ export class CrearViajePage implements OnInit {
     }
     //declaro e instancio un objeto de tipo NavigationExtras
     let navigationextras: NavigationExtras = {
-      state: { user: this.user }, //asigno obj con clave y valor
+      state: {
+        user: this.user,
+        horaSalida: this.horaSalida,
+        destino: this.destino,
+        tarifa: this.tarifa,
+      }, //asigno obj con clave y valor
     };
     //Ingresara a la page Home, usando la API Router para llamar a otra page+parametro
-    this.presentToast('Bienvenido ' + this.user);
+    this.presentToast(
+      'Viaje con destino a ' + this.destino + ' creado exitosamente.'
+    );
     this.router.navigate(['/home'], navigationextras);
     console.log(this.viajeForm.value);
   }
 
-  confirmar(){
-    
-  }
-
-  atras(){
+  atras() {
     this.router.navigate(['/home']);
   }
 
-  async presentToast(msg:string) {
+  async presentToast(msg: string) {
     const toast = await this.ToastController.create({
       message: msg,
       duration: 2000,
