@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-home',
@@ -7,18 +10,26 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  dato: any;
+  user: any;
 
   constructor(private ActivatedRoute: ActivatedRoute, private router: Router) {
     //llamar a la ruta activa y obtener sus parámetros (si es que tiene)
     this.ActivatedRoute.queryParams.subscribe((params) => {
       //utilizamos lambda
       if (this.router.getCurrentNavigation().extras.state) {
-        this.dato = this.router.getCurrentNavigation().extras.state.dato;
-        console.log(this.dato);
+        this.user = this.router.getCurrentNavigation().extras.state.user;
+        console.log(this.user);
       }
     });
   }
 
   ngOnInit() {}
+
+  crearViaje(){
+    this.router.navigate(['/crear-viaje']);
+  }
+
+  atras(){
+    this.router.navigate(['/login']);
+  }
 }

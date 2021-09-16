@@ -1,9 +1,43 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>crearViaje</ion-title>
-  </ion-toolbar>
+    <img class="item-banner" src="assets/Banner.png" />
 </ion-header>
 
 <ion-content>
+    <div class="ion-padding-vertical">
+        <ion-card class="ion-text-center">
+            <ion-card-header>
+                <ion-card-title class="ion-text-left">Crea tu viaje</ion-card-title>
+            </ion-card-header>
+            <div class="ion-padding-vertical">
+                <form [formGroup]="viajeForm" (submit)="submit()">
+                    <mat-form-field class="input-large">
+                        <mat-label>Destino</mat-label>
+                        <input type="text" matInput formControlName="destino" [(ngModel)]="destino" required>
+                        <mat-error *ngIf="viajeForm.controls.destino.touched && viajeForm.controls.destino.invalid">
+                            <span *ngIf="viajeForm.controls.destino.errors.required">Ingresa tu Destino.</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-large">
+                        <mat-label>Tarifa</mat-label>
+                        <input type="number" matInput formControlName="tarifa" [(ngModel)]="tarifa" required>
+                        <mat-error *ngIf="viajeForm.controls.tarifa.touched && viajeForm.controls.tarifa.invalid">
+                            <span *ngIf="viajeForm.controls.tarifa.errors.required">Ingresa tu Tarifa.</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-large">
+                        <mat-label>Hora de Salida</mat-label>
+                        <input type="time" matInput formControlName="horaSalida" [(ngModel)]="horaSalida" required>
+                        <mat-error *ngIf="viajeForm.controls.horaSalida.touched && viajeForm.controls.horaSalida.invalid">
+                            <span *ngIf="viajeForm.controls.horaSalida.errors.required">Ingresa tu Hora de Salida.</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <ion-item class=" ion-justify-content-between">
+                        <button mat-raised-button color="primary" (click)="confirmar()">Confirmar</button>
+                        <button mat-raised-button color="primary" (click)="atras()">Atrás</button>
+                    </ion-item>
 
+                </form>
+            </div>
+        </ion-card>
+    </div>
 </ion-content>
