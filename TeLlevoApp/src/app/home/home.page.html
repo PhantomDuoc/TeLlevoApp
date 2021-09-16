@@ -12,6 +12,9 @@
                         Bienvenidx, {{user}}
                     </ion-label>
                 </ion-item>
+                <ion-item *ngIf="destino">
+                    <ion-label>Destino: {{destino}}</ion-label>
+                </ion-item>
                 <button mat-raised-button color="primary" type="submit" class="ion-float-left" (click)="crearViaje()">
             Crear Viaje</button>
                 <button mat-raised-button color="primary" class="ion-float-left" (click)="atras()">
