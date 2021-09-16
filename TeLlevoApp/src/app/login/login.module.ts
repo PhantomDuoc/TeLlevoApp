@@ -9,13 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
 
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
-import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   imports: [
@@ -23,7 +21,6 @@ import { MatSliderModule } from '@angular/material/slider';
     FormsModule,
     IonicModule,
     LoginPageRoutingModule,
-    MatSliderModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
