@@ -1,5 +1,23 @@
 <ion-header>
     <img class="item-banner" src="assets/Banner.png" />
+    <ion-toolbar>
+        <ion-title>
+            Ejemplo 1
+        </ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-segment (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="uno">
+                <ion-icon name="home-outline"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button value="dos">
+                <ion-label>Dos</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="Tres">
+                <ion-label>Tres</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>

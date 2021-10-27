@@ -22,6 +22,9 @@ export class HomePage implements OnInit {
       }
     });
   }
+  segmentChanged($event){
+    
+  }
 
   ngOnInit() {}
 
