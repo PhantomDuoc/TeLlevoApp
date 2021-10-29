@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatNativeDateModule} from '@angular/material/core';
-
+import { ComponentsModule } from './components/components.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,6 +18,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatNativeDateModule,
+    /* ComponentsModule, */
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

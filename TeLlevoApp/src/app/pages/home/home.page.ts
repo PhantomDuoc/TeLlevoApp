@@ -75,4 +75,8 @@ export class HomePage implements OnInit {
     });
     toast.present();
   }
+
+  atras(){
+    this.router.navigate(['/login']);
+  }
 }
