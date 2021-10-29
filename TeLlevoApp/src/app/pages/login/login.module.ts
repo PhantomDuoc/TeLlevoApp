@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     MatButtonModule,
     ReactiveFormsModule,
+    ComponentsModule,
   ],
   declarations: [LoginPage]
 })

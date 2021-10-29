@@ -5,9 +5,9 @@ import { BannerComponent } from './banner/banner.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [BannerComponent],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [BannerComponent]
 })
