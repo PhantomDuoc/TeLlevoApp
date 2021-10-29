@@ -1,0 +1,76 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title class="ion-padding">Te Llevo App</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-segment color="primary" [(ngModel)]="type" (ionChange)="segmentChanged($event)" value="ordenes" scrollable class="ion-padding-horizontal">
+        <ion-segment-button value="home" checked>
+            <ion-label>Inicio</ion-label>
+            <ion-icon name="home-outline"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="nuevo-viaje">
+            <ion-label>Nuevo Viaje</ion-label>
+            <ion-icon name="add-outline"></ion-icon>
+        </ion-segment-button>
+    </ion-segment>
+
+    <div class="" [ngSwitch]="type">
+        <ion-list *ngSwitchCase="'home'">
+            <ion-item *ngFor="let item of [].constructor(5); let i = index">
+                <ion-label>
+                    <h2>Viaje - {{i}}</h2>
+                    <h3>Requester</h3>
+                    <p>Reference</p>
+                    <p>Order Number</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+        <ion-card *ngSwitchCase="'nuevo-viaje'" class="ion-padding-vertical ion-text-center">
+            <div class="ion-padding-vertical">
+                <form [formGroup]="viajeForm" (submit)="submit()">
+                    <mat-form-field class="input-large">
+                        <mat-label>Destino</mat-label>
+                        <input type="text" matInput formControlName="destino" [(ngModel)]="destino" required>
+                        <mat-error *ngIf="viajeForm.controls.destino.touched && viajeForm.controls.destino.invalid">
+                            <span *ngIf="viajeForm.controls.destino.errors.required">Ingrese un destino.</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-large">
+                        <mat-label>Tarifa</mat-label>
+                        <input type="number" matInput formControlName="tarifa" [(ngModel)]="tarifa" required>
+                        <mat-error *ngIf="viajeForm.controls.tarifa.touched && viajeForm.controls.tarifa.invalid">
+                            <span *ngIf="viajeForm.controls.tarifa.errors.required">Ingrese una tarifa.</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-large">
+                        <mat-label>Hora</mat-label>
+                        <input type="time" matInput formControlName="hora" [(ngModel)]="hora" required>
+                        <mat-error *ngIf="viajeForm.controls.hora.touched && viajeForm.controls.hora.invalid">
+                            <span *ngIf="viajeForm.controls.hora.errors.required">Ingrese la hora.</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Escoger una fecha</mat-label>
+                        <div>
+                            <input matInput [matDatepicker]="picker" formControlName="fecha" [(ngModel)]="fecha" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </div>
+                        <mat-error *ngIf="viajeForm.controls.fecha.touched && viajeForm.controls.fecha.invalid">
+                            <span *ngIf="viajeForm.controls.fecha.errors.required">Ingrese la fecha.</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <ion-item class="ion-justify-content-between">
+                        <button mat-raised-button color="primary" type="submit" (click)="submit()">Confirmar</button>
+                        <button mat-raised-button color="primary" (click)="viajeForm.reset()">Limpiar</button>
+                    </ion-item>
+                </form>
+            </div>
+        </ion-card>
+
+    </div>
+
+</ion-content>

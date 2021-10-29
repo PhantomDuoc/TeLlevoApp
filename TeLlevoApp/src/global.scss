@@ -33,3 +33,11 @@ mat-form-field-appearance-outline.mat-form-field-invalid .mat-form-field-outline
 .mat-error {
     color: #f44336!important;
 }
+
+ion-content {
+    width: calc(100% + 15px);
+}
+
+ion-content::part(scroll) {
+    padding-right: 15px;
+}

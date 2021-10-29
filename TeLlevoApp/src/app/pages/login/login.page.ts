@@ -13,10 +13,10 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    public ToastController: ToastController,
+    public toastController: ToastController,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -25,33 +25,28 @@ export class LoginPage implements OnInit {
     });
   }
 
-  submit() {
-    if (!this.loginForm.valid) {
+  ionViewWillEnter(){
+    this.loginForm.reset();
+  }
+
+  submit(){
+    if(!this.loginForm.valid){
       return;
     }
-    //declaro e instancio un objeto de tipo NavigationExtras
-    let navigationextras: NavigationExtras = {
-      state: { user: this.user }, //asigno obj con clave y valor
+    let navigationExtras: NavigationExtras = {
+      state: {user: this.user},
     };
-    //Ingresara a la page Home, usando la API Router para llamar a otra page+parametro
-    this.presentToast('Bienvenido ' + this.user);
-    this.router.navigate(['/home'], navigationextras);
+    this.presentToast('Bienvenido '+this.user);
+    this.router.navigate(['/home'], navigationExtras);
     console.log(this.loginForm.value);
   }
 
-  crearCuenta(){
-    this.router.navigate(['/crear-cuenta'])
-  }
-
-  restablecer() {
-    this.router.navigate(['/restablecer']);
-  }
-
   async presentToast(msg:string) {
-    const toast = await this.ToastController.create({
+    const toast = await this.toastController.create({
       message: msg,
       duration: 2000,
     });
     toast.present();
   }
+
 }
