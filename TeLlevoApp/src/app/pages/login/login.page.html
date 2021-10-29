@@ -10,7 +10,7 @@
     </ion-segment>
 
     <div class="ion-padding-vertical" [ngSwitch]="type">
-        <ion-card class="ion-text-center" *ngSwitchCase="'login'">
+        <ion-card class="ion-text-center ion-padding" *ngSwitchCase="'login'">
             <ion-card-title>Te Llevo App</ion-card-title>
             <div class="ion-padding-vertical">
                 <form [formGroup]="loginForm">
@@ -33,13 +33,14 @@
                       </mat-error>
                     </mat-form-field>
                   </div>
-                  <button mat-raised-button color="primary" (click)="submit()" class="ion-padding-horizontal ion-padding-vertical">
+                  
+                  <button mat-raised-button color="primary" (click)="submit()" class="">
                     Ingresar
                   </button>
-                  <button mat-raised-button color="primary" (click)="changeCreate()" class="ion-padding-horizontal ion-padding-vertical">
+                  <button mat-raised-button color="primary" (click)="changeCreate()" class="">
                     Crear Cuenta
                   </button>
-                  <mat-label (click)="changeReset()">
+                  <mat-label class="" (click)="changeReset()">
                       ¿Olvidaste tu contraseña?
                 </mat-label>
             </form>

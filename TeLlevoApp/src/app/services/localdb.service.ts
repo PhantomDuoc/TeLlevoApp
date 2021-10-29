@@ -1,15 +1,19 @@
+/* eslint-disable no-underscore-dangle */
 import { Injectable } from '@angular/core';
-
+import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { Iusers } from '../interfaces/iusers';
+
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class StorageService {
+export class LocaldbService {
+  usersdb: Iusers[]=[];
   private _storage: Storage | null = null;
-
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage, private platform: Platform) {
     this.init();
+    this.getUsers();
   }
 
   async init() {
@@ -18,9 +22,10 @@ export class StorageService {
     this._storage = storage;
   }
 
-  // Create and expose methods that users of this service can
-  // call, for example:
-  public set(key: string, value: any) {
-    this._storage?.set(key, value);
+  async getUsers(){
+    const myUsers = await this.storage.get('users');
+    if (myUsers) {
+      this.usersdb = myUsers;
+      return myUsers;
+    }
   }
-}
