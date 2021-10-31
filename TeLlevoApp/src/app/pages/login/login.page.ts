@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
     this.createForm =this.formBuilder.group({
       user: [null, [Validators.required]],
       password: [null, Validators.required],
-      correo: [null, Validators.required],
+      /* correo: [null, Validators.required], */
     });
     this.resetForm = this.formBuilder.group({
       correo: [null, Validators.required]
@@ -68,8 +68,8 @@ export class LoginPage implements OnInit {
     }; */
     //Ingresara a la page Home, usando la API Router para llamar a otra page+parametro
     this.presentToast(
-      'Código de verificación enviado exitosamente a ' + this.correo
-    );
+      'Código de verificación enviado exitosamente a '
+      );
     this.type='login';
     console.log(this.createForm.value);
   }
@@ -93,13 +93,15 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
+
   changeCreate(){
-    
     this.type='create'
   }
+
   changeReset(){
     this.type='reset'
   }
+
   segmentChanged(ev: any){
     console.log('Segment changed', ev);
   }
@@ -107,4 +109,6 @@ export class LoginPage implements OnInit {
   atras(){
     this.type='login'
   }
+
+  
 }
