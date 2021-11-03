@@ -17,9 +17,9 @@
                     <div>
                         <mat-form-field class="input-large">
                             <mat-label>Usuario</mat-label>
-                            <input type="text" matInput formControlName="user" [(ngModel)]="user" required>
-                            <mat-error *ngIf="loginForm.controls.user.touched && loginForm.controls.user.invalid">
-                                <span *ngIf="loginForm.controls.user.errors.required">Ingresa tu usuario.</span>
+                            <input type="text" matInput formControlName="username" [(ngModel)]="username" required>
+                            <mat-error *ngIf="loginForm.controls.username.touched && loginForm.controls.username.invalid">
+                                <span *ngIf="loginForm.controls.username.errors.required">Ingresa tu usuario.</span>
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -34,7 +34,7 @@
                     </mat-form-field>
                   </div>
                   
-                  <button mat-raised-button color="primary" (click)="submit()" class="">
+                  <button mat-raised-button color="primary" (click)="ingresar()" class="">
                     Ingresar
                   </button>
                   <button mat-raised-button color="primary" (click)="changeCreate()" class="">
@@ -54,13 +54,13 @@
                 <ion-card-title class="ion-text-left">Crear Cuenta</ion-card-title>
             </ion-card-header>
             <div class="ion-padding vertical ion-padding-horizontal">
-                <form [formGroup]="createForm" (submit)="crear()">
+                <form [formGroup]="createForm">
                     <div>
                         <mat-form-field class="input-large">
                             <mat-label>Usuario</mat-label>
-                            <input matInput formControlName="user" [(ngModel)]="user" required />
-                            <mat-error *ngIf="createForm.controls.user.touched && createForm.controls.user.invalid">
-                                <span *ngIf="createForm.controls.user.errors.required">Ingresa tu usuario DuocUC.</span>
+                            <input matInput formControlName="username" [(ngModel)]="username" required />
+                            <mat-error *ngIf="createForm.controls.username.touched && createForm.controls.username.invalid">
+                                <span *ngIf="createForm.controls.username.errors.required">Ingresa tu usuario DuocUC.</span>
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -73,24 +73,16 @@
                             </mat-error>
                         </mat-form-field>
                     </div>
-                    <div>
-                        <mat-form-field class="input-large">
-                            <mat-label>Correo</mat-label>
-                            <input matInput type="email" placeholder="ejemplo@gmail.com" formControlName="correo" [(ngModel)]="correo" required />
-                            <mat-error *ngIf="createForm.controls.correo.touched && createForm.controls.correo.invalid">
-                                <span *ngIf="createForm.controls.correo.errors.required">Ingresa tu correo.</span>
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
+
                     <ion-grid class="ion-text-left">
                         <ion-row>
                             <ion-col col-6>
-                                <button mat-raised-button color="primary" type="submit" class="ion-padding-horizontal ion-padding-vertical">
+                                <button mat-raised-button color="primary" (click)=crearCuenta() class="ion-padding-horizontal ion-padding-vertical">
                                     Crear Cuenta
                                   </button>
                             </ion-col>
                             <ion-col col-6>
-                                <button mat-raised-button color="primary" type="button" (click)="atras()">
+                                <button mat-raised-button color="primary" type="button" (click)="atras()" class="ion-padding-horizontal ion-padding-vertical">
                                     Atrás
                                   </button>
                             </ion-col>
@@ -145,9 +137,9 @@
                     <div>
                         <mat-form-field class="input-large">
                             <mat-label>Usuario</mat-label>
-                            <input type="text" matInput formControlName="user" [(ngModel)]="user" required>
-                            <mat-error *ngIf="loginForm.controls.user.touched && loginForm.controls.user.invalid">
-                                <span *ngIf="loginForm.controls.user.errors.required">Ingresa tu usuario.</span>
+                            <input type="text" matInput formControlName="username" [(ngModel)]="username" required>
+                            <mat-error *ngIf="loginForm.controls.username.touched && loginForm.controls.username.invalid">
+                                <span *ngIf="loginForm.controls.username.errors.required">Ingresa tu usuario.</span>
                             </mat-error>
                         </mat-form-field>
                     </div>

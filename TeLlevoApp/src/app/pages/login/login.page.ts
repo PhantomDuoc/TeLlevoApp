@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 
@@ -9,7 +9,7 @@ import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  user: String;
+  username: String;
   type: String;
   loginForm: FormGroup;
   createForm: FormGroup;
@@ -19,19 +19,20 @@ export class LoginPage implements OnInit {
   constructor(
     public toastController: ToastController,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public alertController: AlertController,
+    public navCtrl: NavController,
   ) { }
 
   ngOnInit() {
     this.type = 'login';
     this.loginForm = this.formBuilder.group({
-      user: [null, [Validators.required]],
+      username: [null, [Validators.required]],
       password: [null, Validators.required],
     });
     this.createForm =this.formBuilder.group({
-      user: [null, [Validators.required]],
+      username: [null, [Validators.required]],
       password: [null, Validators.required],
-      correo: [null, Validators.required],
     });
     this.resetForm = this.formBuilder.group({
       correo: [null, Validators.required]
@@ -42,48 +43,77 @@ export class LoginPage implements OnInit {
     this.loginForm.reset();
   }
 
-  restablecer() {
-    if (!this.resetForm.valid) {
+  async crearCuenta(){
+    var formulario = this.createForm.value;
+
+    if(this.createForm.invalid){
+      const alert = await this.alertController.create({
+        header:'Datos erróneos',
+        message:'Datos ingresados incorrectamente, por favor corrígelos.',
+        buttons: ['Ok']
+      });
+
+      await alert.present();
       return;
     }
-    //declaro e instancio un objeto de tipo NavigationExtras
-    let navigationextras: NavigationExtras = {
-      state: { user: this.correo }, //asigno obj con clave y valor
-    };
-    //Ingresara a la page Home, usando la API Router para llamar a otra page+parametro
-    this.presentToast(
-      'Instrucciones de reestablecimiento enviado exitosamente a ' + this.correo
-    );
+
+    var account = {
+      username: formulario.username,
+      password: formulario.password,
+    }
+
+    var verificacion = JSON.parse(localStorage.getItem('account'));
+
+    if((verificacion.username == formulario.username) && (verificacion.password == formulario.password)){
+      const alert = await this.alertController.create({
+        header:'Cuenta no creada',
+        message:'Ya existe una cuenta con el usuario '+verificacion.username+', por favor intenta con otro.',
+        buttons: ['Ok']
+      });
+      await alert.present();
+      return;
+    }
+
+    localStorage.setItem('account', JSON.stringify(account));
+
+    const alert = await this.alertController.create({
+      header:'Cuenta creada',
+      message:'¡Bienvenido '+account.username+' a tu nueva solución de transporte!',
+      buttons: ['Ok']
+    });
+    await alert.present();
     this.atras();
-    console.log(this.resetForm.value);
   }
 
-  crear(){
-    if (!this.createForm.valid) {
-      return;
-    }
-    /* //declaro e instancio un objeto de tipo NavigationExtras
-    let navigationextras: NavigationExtras = {
-      state: { user: this.correo }, //asigno obj con clave y valor
-    }; */
-    //Ingresara a la page Home, usando la API Router para llamar a otra page+parametro
-    this.presentToast(
-      'Código de verificación enviado exitosamente a ' + this.correo
-    );
-    this.type='login';
-    console.log(this.createForm.value);
-  }
+  async ingresar(){
+    var formulario = this.loginForm.value;
+    var account = JSON.parse(localStorage.getItem('account'));
 
-  submit(){
-    if(!this.loginForm.valid){
+    if(this.loginForm.invalid){
+      const alert = await this.alertController.create({
+        header:'Datos incompletos',
+        message:'Los datos ingresados están incompletos, por favor corrígelos.',
+        buttons: ['Ok']
+      });
+
+      await alert.present();
       return;
     }
-    let navigationExtras: NavigationExtras = {
-      state: {user: this.user},
-    };
-    this.presentToast('Bienvenido '+this.user);
-    this.router.navigate(['/home'], navigationExtras);
-    console.log(this.loginForm.value);
+
+    if((account.username == formulario.username) && (account.password == formulario.password)){
+      console.log('ingresado');
+      localStorage.setItem('ingresado','true');
+      this.navCtrl.navigateRoot('home');
+    }else{
+      const alert = await this.alertController.create({
+        header:'Datos incorrectos',
+        message:'Los datos ingresados no corresponden a ninguna cuenta registrada.',
+        buttons: ['Ok']
+      });
+
+      await alert.present();
+      return;
+    }
   }
 
   async presentToast(msg:string) {
@@ -93,18 +123,25 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
+
   changeCreate(){
-    
+    this.loginForm.reset();
     this.type='create'
   }
+
   changeReset(){
+    this.loginForm.reset();
     this.type='reset'
   }
+
   segmentChanged(ev: any){
     console.log('Segment changed', ev);
   }
 
   atras(){
-    this.type='login'
+    this.type='login';
+    this.loginForm.reset();
+    this.createForm.reset();
+    this.resetForm.reset();
   }
 }
