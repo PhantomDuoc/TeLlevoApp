@@ -101,9 +101,16 @@ export class LoginPage implements OnInit {
     }
 
     if((account.username == formulario.username) && (account.password == formulario.password)){
+      const alert = await this.alertController.create({
+        header:'Bienvenido',
+        message:'Recuerda ser respetuoso, todos somos seres humanos.',
+        buttons: ['Ok']
+      });
+      await alert.present();
       console.log('ingresado');
       localStorage.setItem('ingresado','true');
       this.navCtrl.navigateRoot('home');
+      return;
     }else{
       const alert = await this.alertController.create({
         header:'Datos incorrectos',
