@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 import { IonicStorageModule } from '@ionic/storage-angular'
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { IonicStorageModule } from '@ionic/storage-angular'
     BrowserAnimationsModule,
     MatNativeDateModule,
     IonicStorageModule.forRoot(),
+    MatDatepickerModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

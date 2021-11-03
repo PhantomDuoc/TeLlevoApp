@@ -33,7 +33,7 @@
 
         <ion-card *ngSwitchCase="'nuevo-viaje'" class="ion-padding-vertical ion-text-center">
             <div class="ion-padding-vertical">
-                <form [formGroup]="viajeForm" (submit)="submit()">
+                <form [formGroup]="viajeForm">
                     <mat-form-field class="input-large">
                         <mat-label>Destino</mat-label>
                         <input type="text" matInput formControlName="destino" [(ngModel)]="destino" required>
@@ -67,7 +67,7 @@
                         </mat-error>
                     </mat-form-field>
                     <ion-item class="ion-justify-content-between">
-                        <button mat-raised-button color="primary" type="submit" (click)="submit()">Confirmar</button>
+                        <button mat-raised-button color="primary" (click)="submit()">Confirmar</button>
                         <button mat-raised-button color="primary" (click)="viajeForm.reset()">Limpiar</button>
                     </ion-item>
                 </form>

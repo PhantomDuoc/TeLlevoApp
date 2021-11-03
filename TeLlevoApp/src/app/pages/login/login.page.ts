@@ -57,6 +57,18 @@ export class LoginPage implements OnInit {
       return;
     }
 
+    /* var letters = /^[A-Za-z]+$/;
+
+    if(formulario.username.length < 4 && !formulario.username.match(letters)){
+      const alert = await this.alertController.create({
+        header:'Cuenta no creada',
+        message:'Por favor, ingresa un nombre de usuario y una contraseña con al menos 4 caracteres.',
+        buttons: ['Ok']
+      });
+      await alert.present();
+      return;
+    } */
+
     var account = {
       username: formulario.username,
       password: formulario.password,

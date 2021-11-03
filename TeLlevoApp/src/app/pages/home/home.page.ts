@@ -46,6 +46,10 @@ export class HomePage implements OnInit {
     });
   }
 
+  async crearViaje(){
+
+  }
+
   submit(){
     if(!this.viajeForm.valid){
       return;
