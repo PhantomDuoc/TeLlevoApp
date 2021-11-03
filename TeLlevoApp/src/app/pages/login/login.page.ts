@@ -33,10 +33,6 @@ export class LoginPage implements OnInit {
     this.createForm =this.formBuilder.group({
       username: [null, [Validators.required]],
       password: [null, Validators.required],
-<<<<<<< HEAD
-      /* correo: [null, Validators.required], */
-=======
->>>>>>> development-hugo
     });
     this.resetForm = this.formBuilder.group({
       correo: [null, Validators.required]
@@ -115,20 +111,6 @@ export class LoginPage implements OnInit {
       await alert.present();
       return;
     }
-<<<<<<< HEAD
-    /* //declaro e instancio un objeto de tipo NavigationExtras
-    let navigationextras: NavigationExtras = {
-      state: { user: this.correo }, //asigno obj con clave y valor
-    }; */
-    //Ingresara a la page Home, usando la API Router para llamar a otra page+parametro
-    this.presentToast(
-      'Código de verificación enviado exitosamente a '
-      );
-    this.type='login';
-    console.log(this.createForm.value);
-  }
-=======
->>>>>>> development-hugo
 
     if((account.username == formulario.username) && (account.password == formulario.password)){
       const alert = await this.alertController.create({
@@ -162,10 +144,7 @@ export class LoginPage implements OnInit {
   }
 
   changeCreate(){
-<<<<<<< HEAD
-=======
     this.loginForm.reset();
->>>>>>> development-hugo
     this.type='create'
   }
 

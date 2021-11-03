@@ -1,21 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-<<<<<<< HEAD
-=======
 import { NavController } from '@ionic/angular';
->>>>>>> development-hugo
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoIngresadoGuard implements CanActivate {
-<<<<<<< HEAD
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-=======
   constructor(
     public navCtrl: NavController,
   ){}
@@ -28,7 +19,6 @@ export class NoIngresadoGuard implements CanActivate {
     }else{
       return true;
     }
->>>>>>> development-hugo
   }
   
 }
