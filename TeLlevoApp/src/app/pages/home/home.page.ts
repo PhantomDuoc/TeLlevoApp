@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Time } from '@angular/common';
@@ -22,7 +22,9 @@ export class HomePage implements OnInit {
     public ToastController: ToastController,
     private ActivatedRoute: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public navCtrl: NavController,
+    public alertController: AlertController,
   ) {
      //llamar a la ruta activa y obtener sus parámetros (si es que tiene)
      this.ActivatedRoute.queryParams.subscribe((params) => {
@@ -42,6 +44,10 @@ export class HomePage implements OnInit {
       hora: [null, [Validators.required]],
       fecha: [null, [Validators.required]],
     });
+  }
+
+  async crearViaje(){
+
   }
 
   submit(){
@@ -76,7 +82,16 @@ export class HomePage implements OnInit {
     toast.present();
   }
 
-  atras(){
-    this.router.navigate(['/login']);
+  async atras(){
+    const alert = await this.alertController.create({
+      header:'Sesión terminada',
+      message:'Muchas gracias por utilizar Te llevo App.',
+      buttons: ['Ok']
+    });
+
+    await alert.present();
+    localStorage.removeItem('ingresado');
+    this.navCtrl.navigateRoot('login');
+    return;
   }
 }
