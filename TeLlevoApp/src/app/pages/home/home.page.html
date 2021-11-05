@@ -55,7 +55,7 @@
                             <span *ngIf="viajeForm.controls.hora.errors.required">Ingrese la hora.</span>
                         </mat-error>
                     </mat-form-field>
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                         <mat-label>Escoger una fecha</mat-label>
                         <div>
                             <input matInput [matDatepicker]="picker" formControlName="fecha" [(ngModel)]="fecha" required>
@@ -65,9 +65,9 @@
                         <mat-error *ngIf="viajeForm.controls.fecha.touched && viajeForm.controls.fecha.invalid">
                             <span *ngIf="viajeForm.controls.fecha.errors.required">Ingrese la fecha.</span>
                         </mat-error>
-                    </mat-form-field>
+                    </mat-form-field> -->
                     <ion-item class="ion-justify-content-between">
-                        <button mat-raised-button color="primary" (click)="submit()">Confirmar</button>
+                        <button mat-raised-button color="primary" (click)="guardarV()">Confirmar</button>
                         <button mat-raised-button color="primary" (click)="viajeForm.reset()">Limpiar</button>
                     </ion-item>
                 </form>

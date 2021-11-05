@@ -57,26 +57,14 @@ export class LoginPage implements OnInit {
       return;
     }
 
-    /* var letters = /^[A-Za-z]+$/;
-
-    if(formulario.username.length < 4 && !formulario.username.match(letters)){
-      const alert = await this.alertController.create({
-        header:'Cuenta no creada',
-        message:'Por favor, ingresa un nombre de usuario y una contraseña con al menos 4 caracteres.',
-        buttons: ['Ok']
-      });
-      await alert.present();
-      return;
-    } */
-
     var account = {
       username: formulario.username,
       password: formulario.password,
     }
 
     var verificacion = JSON.parse(localStorage.getItem('account'));
-
-    if((verificacion.username == formulario.username) && (verificacion.password == formulario.password)){
+    console.log(verificacion);
+    /* if((verificacion.username == formulario.username) && (verificacion.password == formulario.password)){
       const alert = await this.alertController.create({
         header:'Cuenta no creada',
         message:'Ya existe una cuenta con el usuario '+verificacion.username+', por favor intenta con otro.',
@@ -84,13 +72,12 @@ export class LoginPage implements OnInit {
       });
       await alert.present();
       return;
-    }
-
+    } */
+    console.log('aqui');
     localStorage.setItem('account', JSON.stringify(account));
-
     const alert = await this.alertController.create({
       header:'Cuenta creada',
-      message:'¡Bienvenido '+account.username+' a tu nueva solución de transporte!',
+      message:'¡Bienvenidx '+account.username+' a tu nueva solución de transporte!',
       buttons: ['Ok']
     });
     await alert.present();
@@ -114,8 +101,8 @@ export class LoginPage implements OnInit {
 
     if((account.username == formulario.username) && (account.password == formulario.password)){
       const alert = await this.alertController.create({
-        header:'Bienvenido',
-        message:'Recuerda ser respetuoso, todos somos seres humanos.',
+        header:'Bienvenidx',
+        message:'Recuerda ser respetuosx, todos somos seres humanos.',
         buttons: ['Ok']
       });
       await alert.present();

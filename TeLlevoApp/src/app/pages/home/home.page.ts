@@ -3,6 +3,7 @@ import { AlertController, NavController, ToastController } from '@ionic/angular'
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Time } from '@angular/common';
+import { ViajesService } from 'src/app/services/viajes.service';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +13,15 @@ import { Time } from '@angular/common';
 export class HomePage implements OnInit {
   user: any;
   type: String;
-  destino: String;
-  tarifa: String;
-  hora: Time;
-  fecha: Date;
+  users: any;
+  viajes:any;
+  viaje:any={
+    destino: String,
+    tarifa: String,
+    hora: String,
+    userId:null,
+  };
+  compareWith:any;
   viajeForm: FormGroup;
 
   constructor(
@@ -25,6 +31,7 @@ export class HomePage implements OnInit {
     private formBuilder: FormBuilder,
     public navCtrl: NavController,
     public alertController: AlertController,
+    private api: ViajesService,
   ) {
      //llamar a la ruta activa y obtener sus parámetros (si es que tiene)
      this.ActivatedRoute.queryParams.subscribe((params) => {
@@ -42,33 +49,84 @@ export class HomePage implements OnInit {
       destino: [null, [Validators.required]],
       tarifa: [null, [Validators.required]],
       hora: [null, [Validators.required]],
-      fecha: [null, [Validators.required]],
+      /* fecha: [null, [Validators.required]], */
     });
   }
 
-  async crearViaje(){
+  ionViewWillEnter(){
 
   }
 
-  submit(){
-    if(!this.viajeForm.valid){
-      return;
+  getPosts() {
+    this.api.getPosts().subscribe((data) =>{
+      this.viajes=data;
+      this.viajes.reverse();
+    });
+  }
+
+  getUsuarios() {
+    this.api.getUsuarios().subscribe((data)=>{
+      this.users=data;
+    })
+  }
+
+  guardarViaje(){
+    if (this.viaje.userId==null) {
+      if (this.user==undefined) {
+        this.presentToast("Debe seleccionar un conductor")
+        return;
+      }
+      this.viaje.userId=this.user.id;
+      this.api.createPost(this.viaje).subscribe(
+        ()=>{
+          this.presentToast("Viaje creado con éxito");
+          this.getPosts();
+        },
+        error=>{
+          this.presentToast("Error - "+error)
+        }
+      );
+    } else{
+      this.api.updatePost(this.viaje.id, this.viaje).subscribe(
+        ()=>{
+          this.presentToast("Viaje actualizado con éxito");
+          this.getPosts();
+        },
+        error=>{
+          this.presentToast("Error - "+error)
+        }
+      )
+
     }
-    let navigationExtras: NavigationExtras = {
-      state: {
-        user: this.user,
-        destino : this.destino,
-        tarifa: this.tarifa,
-        hora: this.hora,
-        fecha: this.fecha,
-      },
-    };
-    this.presentToast(
-      'Viaje creado exitosamente.'
-    );
-    this.type='home';
-    console.log(this.viajeForm.value);
   }
+
+  setPost(post){
+    this.viaje=post;
+    this.getUsuario(post.userId);
+    this.compareWith=this.compareWithFn;
+  }
+
+  getUsuario(userId: any) {
+    this.api.getUsuario(userId).subscribe((data)=>{
+      this.user=data;
+    })
+  }
+
+  eliminarPost(post){
+    this.api.deletePost(post.id).subscribe(
+      success=>{
+        this.presentToast("Viaje eliminado con éxito")
+        this.getPosts();
+      },
+      error=>{
+        this.presentToast("Error - "+error)
+      }
+    )
+  }
+
+  compareWithFn = (o1, o2) => {
+    return o1 && o2 ? o1.id === o2.id : o1 === o2;
+  };
 
   segmentChanged(ev: any){
     console.log('Segment changed', ev);
