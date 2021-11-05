@@ -20,11 +20,13 @@
     </ion-segment>
 
     <div class="" [ngSwitch]="type">
-        <ion-card *ngSwitchCase="home">
-            <ion-list-header>
+
+
+        <div class="">
+            <ion-list-header *ngSwitchCase="home">
                 <ion-title>Historial de viajes</ion-title>
             </ion-list-header>
-            <ion-list>
+            <ion-list class="ion-padding-vertical ion-text-center">
                 <ion-item *ngFor="let post of posts">
                     <ion-label (click)="setPost(post)">
                         <h4>{{post.title}}</h4>
@@ -36,7 +38,9 @@
                     </ion-button>
                 </ion-item>
             </ion-list>
-        </ion-card>
+        </div>
+
+
 
 
         <ion-card *ngSwitchCase="'nuevo-viaje'" class="ion-padding-vertical ion-text-center">

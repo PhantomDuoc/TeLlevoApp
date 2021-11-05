@@ -133,6 +133,7 @@ export class HomePage implements OnInit {
 
   segmentChanged(ev: any){
     console.log('Segment changed', ev);
+    this.getPosts();
   }
 
   async presentToast(msg: string) {
