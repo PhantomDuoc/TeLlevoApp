@@ -233,31 +233,10 @@
   ],
   "posts": [
     {
-      "title": "as",
-      "destino": "",
-      "tarifa": "",
-      "hora": "",
-      "userId": 3,
-      "body": "as",
-      "id": 1
-    },
-    {
-      "id": 2,
-      "title": "aw",
-      "body": "aw",
+      "id": 1,
+      "title": "test",
+      "body": "test",
       "userId": 4
-    },
-    {
-      "id": 3,
-      "title": "aw",
-      "body": "aw",
-      "userId": 4
-    },
-    {
-      "id": 4,
-      "title": "",
-      "body": "",
-      "userId": 3
     }
   ]
 }
