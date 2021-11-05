@@ -20,57 +20,61 @@
     </ion-segment>
 
     <div class="" [ngSwitch]="type">
-        <ion-list *ngSwitchCase="'home'">
-            <ion-item *ngFor="let item of [].constructor(5); let i = index">
-                <ion-label>
-                    <h2>Viaje - {{i}}</h2>
-                    <h3>Conductor:</h3>
-                    <p>Destino:</p>
-                    <p>Tarifa:</p>
-                </ion-label>
-            </ion-item>
-        </ion-list>
+        <ion-card *ngSwitchCase="home">
+            <ion-list-header>
+                <ion-title>Historial de viajes</ion-title>
+            </ion-list-header>
+            <ion-list>
+                <ion-item *ngFor="let post of posts">
+                    <ion-label (click)="setPost(post)">
+                        <h4>{{post.title}}</h4>
+                        <p>{{post.body}}</p>
+
+                    </ion-label>
+                    <ion-button (click)="eliminarPost(post)">
+                        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </ion-list>
+        </ion-card>
+
 
         <ion-card *ngSwitchCase="'nuevo-viaje'" class="ion-padding-vertical ion-text-center">
             <div class="ion-padding-vertical">
-                <form [formGroup]="viajeForm">
-                    <mat-form-field class="input-large">
-                        <mat-label>Destino</mat-label>
-                        <input type="text" matInput formControlName="destino" [(ngModel)]="destino" required>
-                        <mat-error *ngIf="viajeForm.controls.destino.touched && viajeForm.controls.destino.invalid">
-                            <span *ngIf="viajeForm.controls.destino.errors.required">Ingrese un destino.</span>
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="input-large">
-                        <mat-label>Tarifa</mat-label>
-                        <input type="number" matInput formControlName="tarifa" [(ngModel)]="tarifa" required>
-                        <mat-error *ngIf="viajeForm.controls.tarifa.touched && viajeForm.controls.tarifa.invalid">
-                            <span *ngIf="viajeForm.controls.tarifa.errors.required">Ingrese una tarifa.</span>
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="input-large">
-                        <mat-label>Hora</mat-label>
-                        <input type="time" matInput formControlName="hora" [(ngModel)]="hora" required>
-                        <mat-error *ngIf="viajeForm.controls.hora.touched && viajeForm.controls.hora.invalid">
-                            <span *ngIf="viajeForm.controls.hora.errors.required">Ingrese la hora.</span>
-                        </mat-error>
-                    </mat-form-field>
-                    <!-- <mat-form-field>
-                        <mat-label>Escoger una fecha</mat-label>
-                        <div>
-                            <input matInput [matDatepicker]="picker" formControlName="fecha" [(ngModel)]="fecha" required>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </div>
-                        <mat-error *ngIf="viajeForm.controls.fecha.touched && viajeForm.controls.fecha.invalid">
-                            <span *ngIf="viajeForm.controls.fecha.errors.required">Ingrese la fecha.</span>
-                        </mat-error>
-                    </mat-form-field> -->
-                    <ion-item class="ion-justify-content-between">
-                        <button mat-raised-button color="primary" (click)="guardarV()">Confirmar</button>
-                        <button mat-raised-button color="primary" (click)="viajeForm.reset()">Limpiar</button>
-                    </ion-item>
-                </form>
+
+                <ion-card-header>
+                    <ion-title class="titulo">Conductores</ion-title>
+                </ion-card-header>
+                <ion-item>
+                    <ion-select placeholder="Seleccione" [(ngModel)]="user">
+                        <ion-select-option *ngFor="let usu of users" [value]="usu">{{usu.name}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <br>
+
+                <ion-card-header>
+                    <ion-title>Direcciones</ion-title>
+                </ion-card-header>
+                <ion-item class="ion-padding-horizontal">
+                    <ion-label position="floating">¿Donde estoy?</ion-label>
+                    <ion-input [(ngModel)]="post.title"></ion-input>
+                </ion-item>
+                <ion-item class="ion-padding-horizontal">
+                    <ion-label position="floating">¿Donde voy?</ion-label>
+                    <ion-textarea [(ngModel)]="post.body"></ion-textarea>
+                </ion-item>
+                <ion-grid>
+                    <ion-row>
+
+                        <ion-col>
+                            <button mat-raised-button color="primary" (click)="guardarViaje()" class="">
+                                Guardar viaje
+                                </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
             </div>
         </ion-card>
 

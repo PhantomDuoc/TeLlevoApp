@@ -51,5 +51,4 @@ export class ViajesService {
     deletePost(id):Observable<any>{
       return this.http.delete(this.apiURL+'/posts/'+id,this.httpOptions);
       }
-         
   }
