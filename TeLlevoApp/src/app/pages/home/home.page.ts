@@ -14,11 +14,11 @@ export class HomePage implements OnInit {
   user: any;
   type: String;
   users: any;
-  viajes:any;
-  viaje:any={
-    destino: String,
-    tarifa: String,
-    hora: String,
+  posts:any;
+  post:any={
+    id:null,
+    title:"",
+    body:"",
     userId:null,
   };
   compareWith:any;
@@ -54,13 +54,14 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter(){
-
+    this.getUsuarios();
+    this.getPosts();
   }
 
   getPosts() {
     this.api.getPosts().subscribe((data) =>{
-      this.viajes=data;
-      this.viajes.reverse();
+      this.posts=data;
+      this.posts.reverse();
     });
   }
 
@@ -71,26 +72,28 @@ export class HomePage implements OnInit {
   }
 
   guardarViaje(){
-    if (this.viaje.userId==null) {
+    if (this.post.userId==null) {
       if (this.user==undefined) {
         this.presentToast("Debe seleccionar un conductor")
         return;
       }
-      this.viaje.userId=this.user.id;
-      this.api.createPost(this.viaje).subscribe(
+      this.post.userId=this.user.id;
+      this.api.createPost(this.post).subscribe(
         ()=>{
           this.presentToast("Viaje creado con éxito");
           this.getPosts();
+          this.type='home';
         },
         error=>{
           this.presentToast("Error - "+error)
         }
       );
     } else{
-      this.api.updatePost(this.viaje.id, this.viaje).subscribe(
+      this.api.updatePost(this.post.id, this.post).subscribe(
         ()=>{
           this.presentToast("Viaje actualizado con éxito");
           this.getPosts();
+          this.type='home';
         },
         error=>{
           this.presentToast("Error - "+error)
@@ -101,7 +104,7 @@ export class HomePage implements OnInit {
   }
 
   setPost(post){
-    this.viaje=post;
+    this.post=post;
     this.getUsuario(post.userId);
     this.compareWith=this.compareWithFn;
   }
