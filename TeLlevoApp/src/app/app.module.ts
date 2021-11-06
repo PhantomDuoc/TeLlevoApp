@@ -11,6 +11,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { IonicStorageModule } from '@ionic/storage-angular'
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { HttpClientModule } from '@angular/common/http';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -24,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDatepickerModule,
     HttpClientModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy, },Geolocation],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
