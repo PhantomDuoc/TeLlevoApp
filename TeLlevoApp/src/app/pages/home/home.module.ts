@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
+import { GeocoderComponent } from 'src/app/components/geocoder/geocoder.component';
 
 
 @NgModule({
@@ -28,9 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  declarations: [HomePage],
+  declarations: [HomePage,GeocoderComponent],
   providers: [
     MatDatepickerModule,
     MatNativeDateModule  

@@ -33,14 +33,14 @@ export class HomePage implements OnInit {
     public alertController: AlertController,
     private api: ViajesService,
   ) {
-     //llamar a la ruta activa y obtener sus parámetros (si es que tiene)
+     /* //llamar a la ruta activa y obtener sus parámetros (si es que tiene)
      this.ActivatedRoute.queryParams.subscribe((params) => {
       //utilizamos lambda
       if (this.router.getCurrentNavigation().extras.state) {
         this.user = this.router.getCurrentNavigation().extras.state.user;
         console.log(this.user);
       }
-    });
+    }); */
    }
 
   ngOnInit() {
