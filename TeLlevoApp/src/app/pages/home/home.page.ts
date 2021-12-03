@@ -53,14 +53,11 @@ export class HomePage implements OnInit {
     });
   }
 
-<<<<<<< Updated upstream
   ionViewWillEnter(){
     this.getUsuarios();
     this.getPosts();
   }
 
-=======
->>>>>>> Stashed changes
   getPosts() {
     this.api.getPosts().subscribe((data) =>{
       this.posts=data;

@@ -231,22 +231,12 @@
       }
     }
   ],
-<<<<<<< Updated upstream
   "posts": [
     {
       "id": 1,
       "title": "test",
-      "body": "test",
-      "userId": 4
-    },
-    {
-      "id": 2,
-      "title": "aaaa",
-      "body": "aaaa",
-      "userId": 2
+      "body": "123",
+      "userId": 3
     }
   ]
-=======
-  "posts": []
->>>>>>> Stashed changes
 }
