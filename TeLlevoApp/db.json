@@ -231,6 +231,7 @@
       }
     }
   ],
+<<<<<<< Updated upstream
   "posts": [
     {
       "id": 1,
@@ -245,4 +246,7 @@
       "userId": 2
     }
   ]
+=======
+  "posts": []
+>>>>>>> Stashed changes
 }
