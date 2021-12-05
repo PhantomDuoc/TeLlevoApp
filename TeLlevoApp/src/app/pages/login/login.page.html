@@ -18,7 +18,7 @@
                     <div>
                         <mat-form-field class="input-large">
                             <mat-label>Usuario</mat-label>
-                            <input type="text" matInput formControlName="username" [(ngModel)]="username" required>
+                            <input type="text" matInput formControlName="username" required>
                             <mat-error *ngIf="loginForm.controls.username.touched && loginForm.controls.username.invalid">
                                 <span *ngIf="loginForm.controls.username.errors.required">Ingresa tu usuario.</span>
                             </mat-error>
@@ -41,7 +41,7 @@
                   <button mat-raised-button color="primary" (click)="changeCreate()" class="">
                     Crear Cuenta
                   </button>
-                  <mat-label class="" (click)="changeReset()">
+                  <mat-label class="" color="primary" (click)="changeReset()">
                       ¿Olvidaste tu contraseña?
                 </mat-label>
             </form>
@@ -59,7 +59,7 @@
                     <div>
                         <mat-form-field class="input-large">
                             <mat-label>Usuario</mat-label>
-                            <input matInput formControlName="username" [(ngModel)]="username" required />
+                            <input matInput formControlName="username" required />
                             <mat-error *ngIf="createForm.controls.username.touched && createForm.controls.username.invalid">
                                 <span *ngIf="createForm.controls.username.errors.required">Ingresa tu usuario DuocUC.</span>
                             </mat-error>
@@ -68,7 +68,7 @@
                     <div>
                         <mat-form-field class="input-large">
                             <mat-label>Contraseña</mat-label>
-                            <input matInput type="password" formControlName="password" [(ngModel)]="password" required />
+                            <input matInput type="password" formControlName="password" required />
                             <mat-error *ngIf="createForm.controls.password.touched && createForm.controls.password.invalid">
                                 <span *ngIf="createForm.controls.password.errors.required">Ingresa tu contraseña.</span>
                             </mat-error>
@@ -103,10 +103,10 @@
                 <form [formGroup]="resetForm" (submit)="restablecer()">
                     <div>
                         <mat-form-field class="input-large ion-padding-vertical">
-                            <mat-label>Correo</mat-label>
-                            <input matInput formControlName="correo" [(ngModel)]="correo" required />
-                            <mat-error *ngIf="resetForm.controls.correo.touched && resetForm.controls.correo.invalid">
-                                <span *ngIf="resetForm.controls.correo.errors.required">Ingresa el correo de tu cuenta DuocUC.</span
+                            <mat-label>Nombre de Usuario</mat-label>
+                            <input matInput formControlName="username" required />
+                            <mat-error *ngIf="resetForm.controls.username.touched && resetForm.controls.username.invalid">
+                                <span *ngIf="resetForm.controls.username.errors.required">Ingresa tu usuario DuocUC.</span
                 >
               </mat-error>
             </mat-form-field>

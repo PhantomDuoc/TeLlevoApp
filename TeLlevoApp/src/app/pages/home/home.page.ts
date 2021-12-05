@@ -44,6 +44,8 @@ export class HomePage implements OnInit {
    }
 
   ngOnInit() {
+    var account = JSON.parse(localStorage.getItem('account'));
+    this.user = account.username;
     this.type = 'home';
     this.viajeForm = this.formBuilder.group({
       destino: [null, [Validators.required]],
@@ -69,6 +71,11 @@ export class HomePage implements OnInit {
     this.api.getUsuarios().subscribe((data)=>{
       this.users=data;
     })
+  }
+
+  async guardarViaje1(){
+    var verificacion = JSON.parse(localStorage.getItem('account'));
+    console.log(verificacion);
   }
 
   guardarViaje(){

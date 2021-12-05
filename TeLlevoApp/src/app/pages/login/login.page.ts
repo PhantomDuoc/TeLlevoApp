@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 
 @Component({
@@ -18,7 +18,6 @@ export class LoginPage implements OnInit {
 
   constructor(
     public toastController: ToastController,
-    private router: Router,
     private formBuilder: FormBuilder,
     public alertController: AlertController,
     public navCtrl: NavController,
@@ -35,12 +34,14 @@ export class LoginPage implements OnInit {
       password: [null, Validators.required],
     });
     this.resetForm = this.formBuilder.group({
-      correo: [null, Validators.required]
+      username: [null, Validators.required]
     });
   }
 
   ionViewWillEnter(){
     this.loginForm.reset();
+    this.createForm.reset();
+    this.resetForm.reset();
   }
 
   async crearCuenta(){
@@ -64,7 +65,7 @@ export class LoginPage implements OnInit {
 
     var verificacion = JSON.parse(localStorage.getItem('account'));
     console.log(verificacion);
-    /* if((verificacion.username == formulario.username) && (verificacion.password == formulario.password)){
+    if(verificacion.username == account.username){
       const alert = await this.alertController.create({
         header:'Cuenta no creada',
         message:'Ya existe una cuenta con el usuario '+verificacion.username+', por favor intenta con otro.',
@@ -72,7 +73,7 @@ export class LoginPage implements OnInit {
       });
       await alert.present();
       return;
-    } */
+    }
     console.log('aqui');
     localStorage.setItem('account', JSON.stringify(account));
     const alert = await this.alertController.create({
@@ -122,6 +123,42 @@ export class LoginPage implements OnInit {
     }
   }
 
+  async restablecer(){
+    var formulario = this.resetForm.value;
+    var account = JSON.parse(localStorage.getItem('account'));
+
+    if(this.resetForm.invalid){
+      const alert = await this.alertController.create({
+        header:'Datos incompletos',
+        message:'Los datos ingresados están incompletos, por favor corrígelos.',
+        buttons: ['Ok']
+      });
+
+      await alert.present();
+      return;
+    }
+
+    if(account.username == formulario.username){
+      const alert = await this.alertController.create({
+        header:'Confirmado',
+        message:'El usuario a restablecer, está registrado en nuestras bases de datos, se enviará un correo a tu cuenta @duocuc.cl con instrucciones para restablecer tu contraseña.',
+        buttons: ['Ok']
+      });
+      await alert.present();
+      this.atras();
+      return;
+    }else{
+      const alert = await this.alertController.create({
+        header:'Datos incorrectos',
+        message:'El usuario ingresado no coincide con ningún usuario registrado en nuestras bases de datos.',
+        buttons: ['Ok']
+      });
+
+      await alert.present();
+      return;
+    }
+  }
+
   async presentToast(msg:string) {
     const toast = await this.toastController.create({
       message: msg,
@@ -132,11 +169,15 @@ export class LoginPage implements OnInit {
 
   changeCreate(){
     this.loginForm.reset();
+    this.createForm.reset();
+    this.resetForm.reset();
     this.type='create'
   }
 
   changeReset(){
     this.loginForm.reset();
+    this.createForm.reset();
+    this.resetForm.reset();
     this.type='reset'
   }
 
