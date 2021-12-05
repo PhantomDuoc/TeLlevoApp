@@ -145,9 +145,12 @@ export class HomePage implements OnInit {
   }
 
   async atras(){
+    var verificacion = JSON.parse(localStorage.getItem('account'));
+    console.log(verificacion);
+
     const alert = await this.alertController.create({
       header:'Sesión terminada',
-      message:'Muchas gracias por utilizar Te llevo App.',
+      message:'Muchas gracias '+verificacion.username+' por utilizar Te llevo App.',
       buttons: ['Ok']
     });
 
