@@ -234,9 +234,15 @@
   "posts": [
     {
       "id": 1,
+<<<<<<< HEAD
       "title": "test",
       "body": "123",
       "userId": 3
+=======
+      "title": "asd",
+      "body": "asd",
+      "userId": 2
+>>>>>>> main
     }
   ]
 }
