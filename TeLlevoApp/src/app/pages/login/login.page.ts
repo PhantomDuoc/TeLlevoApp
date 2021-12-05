@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
       password: [null, Validators.required],
     });
     this.resetForm = this.formBuilder.group({
-      correo: [null, Validators.required]
+      username: [null, Validators.required]
     });
   }
 
@@ -150,6 +150,41 @@ export class LoginPage implements OnInit {
     this.createForm.reset();
     this.resetForm.reset();
   }
+  
+  async restablecer(){
+    var formulario = this.resetForm.value;
+    var account = JSON.parse(localStorage.getItem('account'));
 
+    if(this.resetForm.invalid){
+      const alert = await this.alertController.create({
+        header:'Datos incompletos',
+        message:'Los datos ingresados están incompletos, por favor corrígelos.',
+        buttons: ['Ok']
+      });
+
+      await alert.present();
+      return;
+    }
+
+    if(account.username == formulario.username){
+      const alert = await this.alertController.create({
+        header:'Confirmado',
+        message:'El usuario a restablecer, está registrado en nuestras bases de datos, se enviará un correo a tu cuenta @duocuc.cl con instrucciones para restablecer tu contraseña.',
+        buttons: ['Ok']
+      });
+      await alert.present();
+      this.atras();
+      return;
+    }else{
+      const alert = await this.alertController.create({
+        header:'Datos incorrectos',
+        message:'El usuario ingresado no coincide con ningún usuario registrado en nuestras bases de datos.',
+        buttons: ['Ok']
+      });
+
+      await alert.present();
+      return;
+    }
+  }
   
 }

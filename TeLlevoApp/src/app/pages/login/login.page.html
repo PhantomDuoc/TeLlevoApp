@@ -1,4 +1,6 @@
-<app-banner></app-banner>
+<ion-header>
+    <app-banner></app-banner>
+</ion-header>
 <ion-content>
     <ion-segment color="primary" [(ngModel)]="type" (ionChange)="segmentChanged($event)" value="login" class="hidden">
         <ion-segment-button value="login">
@@ -35,10 +37,10 @@
                     </mat-form-field>
                   </div>
                   
-                  <button mat-raised-button color="primary" (click)="ingresar()" class="">
+                  <button mat-raised-button color="primary" (click)="ingresar()" class="ion-text-center ion-padding">
                     Ingresar
                   </button>
-                  <button mat-raised-button color="primary" (click)="changeCreate()" class="">
+                  <button mat-raised-button color="primary" (click)="changeCreate()" class="ion-text-center ion-padding">
                     Crear Cuenta
                   </button>
                   <mat-label class="" (click)="changeReset()">
@@ -68,7 +70,7 @@
                     <div>
                         <mat-form-field class="input-large">
                             <mat-label>Contraseña</mat-label>
-                            <input matInput type="password" formControlName="password" [(ngModel)]="password" required />
+                            <input matInput type="password" formControlName="password" required />
                             <mat-error *ngIf="createForm.controls.password.touched && createForm.controls.password.invalid">
                                 <span *ngIf="createForm.controls.password.errors.required">Ingresa tu contraseña.</span>
                             </mat-error>
@@ -103,10 +105,10 @@
                 <form [formGroup]="resetForm" (submit)="restablecer()">
                     <div>
                         <mat-form-field class="input-large ion-padding-vertical">
-                            <mat-label>Correo</mat-label>
-                            <input matInput formControlName="correo" [(ngModel)]="correo" required />
-                            <mat-error *ngIf="resetForm.controls.correo.touched && resetForm.controls.correo.invalid">
-                                <span *ngIf="resetForm.controls.correo.errors.required">Ingresa el correo de tu cuenta DuocUC.</span
+                            <mat-label>Nombre de Usuario</mat-label>
+                            <input matInput formControlName="username" required />
+                            <mat-error *ngIf="resetForm.controls.username.touched && resetForm.controls.username.invalid">
+                                <span *ngIf="resetForm.controls.username.errors.required">Ingresa tu usuario DuocUC.</span
                 >
               </mat-error>
             </mat-form-field>

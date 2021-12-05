@@ -236,7 +236,13 @@
       "id": 1,
       "title": "asd",
       "body": "asd",
-      "userId": 2
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "aqui",
+      "body": "alla",
+      "userId": 1
     }
   ]
 }
