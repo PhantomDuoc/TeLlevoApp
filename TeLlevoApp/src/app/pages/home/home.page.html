@@ -13,7 +13,7 @@
             <ion-label>Inicio</ion-label>
             <ion-icon name="home-outline"></ion-icon>
         </ion-segment-button>
-        <ion-segment-button value="nuevo-viaje">
+        <ion-segment-button value="nuevo-viaje" class="nuevoViaje">
             <ion-label>Nuevo Viaje</ion-label>
             <ion-icon name="add-outline"></ion-icon>
         </ion-segment-button>
@@ -23,7 +23,7 @@
         <!-- HOME -->
         <ion-card class="" *ngSwitchCase="'home'">
             <ion-list-header>
-                <ion-title>Historial de viajes</ion-title>
+                <ion-title id="homeTitle">Historial de viajes</ion-title>
             </ion-list-header>
             <ion-list class="ion-padding-vertical ion-text-center">
                 <ion-item *ngFor="let post of posts">
@@ -51,7 +51,7 @@
                     </ion-select>
                 </ion-item>
                 <ion-card-header>
-                    <ion-title>Direcciones</ion-title>
+                    <ion-title id="tituloViajes">Direcciones</ion-title>
                 </ion-card-header>
                 <ion-item class="ion-padding-horizontal">
                     <ion-label position="floating">¿Donde estás?</ion-label>
