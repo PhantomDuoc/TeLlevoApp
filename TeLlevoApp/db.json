@@ -243,6 +243,12 @@
       "title": "aqui",
       "body": "alla",
       "userId": 1
+    },
+    {
+      "id": 3,
+      "title": "test",
+      "body": "test",
+      "userId": 3
     }
   ]
 }

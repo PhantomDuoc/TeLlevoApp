@@ -64,15 +64,16 @@ export class LoginPage implements OnInit {
 
     var verificacion = JSON.parse(localStorage.getItem('account'));
     console.log(verificacion);
-    /* if((verificacion.username == formulario.username) && (verificacion.password == formulario.password)){
+    if((verificacion.username == account.username) && (verificacion.password == account.password)){
       const alert = await this.alertController.create({
         header:'Cuenta no creada',
         message:'Ya existe una cuenta con el usuario '+verificacion.username+', por favor intenta con otro.',
         buttons: ['Ok']
       });
+      this.resetForm.reset();
       await alert.present();
       return;
-    } */
+    }
     console.log('aqui');
     localStorage.setItem('account', JSON.stringify(account));
     const alert = await this.alertController.create({
@@ -150,7 +151,7 @@ export class LoginPage implements OnInit {
     this.createForm.reset();
     this.resetForm.reset();
   }
-  
+
   async restablecer(){
     var formulario = this.resetForm.value;
     var account = JSON.parse(localStorage.getItem('account'));
@@ -170,7 +171,8 @@ export class LoginPage implements OnInit {
       const alert = await this.alertController.create({
         header:'Confirmado',
         message:'El usuario a restablecer, está registrado en nuestras bases de datos, se enviará un correo a tu cuenta @duocuc.cl con instrucciones para restablecer tu contraseña.',
-        buttons: ['Ok']
+        buttons: ['Ok'],
+        cssClass: 'feliz',
       });
       await alert.present();
       this.atras();
