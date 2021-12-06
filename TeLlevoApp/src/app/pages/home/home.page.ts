@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
     id:null,
     title:"",
     body:"",
+    tarifa:null,
     userId:null,
   };
   compareWith:any;
@@ -44,6 +45,8 @@ export class HomePage implements OnInit {
    }
 
   ngOnInit() {
+    var account = JSON.parse(localStorage.getItem('account'));
+    this.user = account.username;
     this.type = 'home';
     this.viajeForm = this.formBuilder.group({
       destino: [null, [Validators.required]],
@@ -56,6 +59,8 @@ export class HomePage implements OnInit {
   ionViewWillEnter(){
     this.getUsuarios();
     this.getPosts();
+    var account = JSON.parse(localStorage.getItem('account'));
+    this.user = account.username;
   }
 
   getPosts() {
@@ -75,6 +80,10 @@ export class HomePage implements OnInit {
     if (this.post.userId==null) {
       if (this.user==undefined) {
         this.presentToast("Debe seleccionar un conductor")
+        return;
+      }
+      if(this.post.tarifa > 2000){
+        this.presentToast("La tarifa máxima es de $2.000.-");
         return;
       }
       this.post.userId=this.user.id;
@@ -134,6 +143,8 @@ export class HomePage implements OnInit {
   segmentChanged(ev: any){
     console.log('Segment changed', ev);
     this.getPosts();
+    var account = JSON.parse(localStorage.getItem('account'));
+    this.user = account.username;
   }
 
   async presentToast(msg: string) {

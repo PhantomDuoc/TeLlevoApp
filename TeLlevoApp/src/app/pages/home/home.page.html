@@ -22,14 +22,18 @@
     <div class="" [ngSwitch]="type">
         <!-- HOME -->
         <ion-card class="" *ngSwitchCase="'home'">
+            <ion-card-header>
+                <ion-title class="titulo">Bienvenido {{user}}</ion-title>
+            </ion-card-header>
             <ion-list-header>
-                <ion-title id="homeTitle">Historial de viajes</ion-title>
+                <ion-title id="homeTitle">Viajes activos</ion-title>
             </ion-list-header>
             <ion-list class="ion-padding-vertical ion-text-center">
                 <ion-item *ngFor="let post of posts">
                     <ion-label (click)="setPost(post)">
                         <h4>{{post.title}}</h4>
                         <p>{{post.body}}</p>
+                        <p>{{post.tarifa}}</p>
 
                     </ion-label>
                     <ion-button (click)="eliminarPost(post)">
@@ -60,6 +64,10 @@
                 <ion-item class="ion-padding-horizontal">
                     <ion-label position="floating">¿Donde vas?</ion-label>
                     <ion-textarea [(ngModel)]="post.body"></ion-textarea>
+                </ion-item>
+                <ion-item class="ion-padding-horizontal">
+                    <ion-label position="floating">Tarifa</ion-label>
+                    <ion-input type="number" [(ngModel)]="post.tarifa"></ion-input>
                 </ion-item>
                 <button mat-raised-button color="primary" (click)="guardarViaje()" class="">
                 Guardar viaje

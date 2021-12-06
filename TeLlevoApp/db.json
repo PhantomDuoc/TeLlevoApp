@@ -249,6 +249,20 @@
       "title": "test",
       "body": "test",
       "userId": 3
+    },
+    {
+      "id": 4,
+      "title": "test1",
+      "body": "test1",
+      "tarifa": 123,
+      "userId": 2
+    },
+    {
+      "id": 5,
+      "title": "asd",
+      "body": "asd",
+      "tarifa": 2000,
+      "userId": 4
     }
   ]
 }
