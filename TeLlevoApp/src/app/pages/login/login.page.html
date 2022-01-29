@@ -43,7 +43,7 @@
                   <button mat-raised-button color="primary" (click)="changeCreate()" class="ion-text-center ion-padding" id="btnCrearCuentaLogin">
                     Crear Cuenta
                   </button>
-                  <mat-label class="" (click)="changeReset()" id="btnRestablecerLogin">
+                  <mat-label class="ion-text-center ion-padding" (click)="changeReset()" id="btnRestablecerLogin">
                       ¿Olvidaste tu contraseña?
                 </mat-label>
             </form>
@@ -108,26 +108,19 @@
                             <mat-label>Nombre de Usuario</mat-label>
                             <input matInput formControlName="username" required id="resetUser">
                             <mat-error *ngIf="resetForm.controls.username.touched && resetForm.controls.username.invalid">
-                                <span *ngIf="resetForm.controls.username.errors.required">Ingresa tu usuario DuocUC.</span
-                >
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            class="ion-padding-horizontal ion-padding-vertical"
-            id="btnRestablecer"
-          >
+                                <span *ngIf="resetForm.controls.username.errors.required">Ingresa tu usuario DuocUC.</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <button mat-raised-button color="primary" type="submit" class="ion-padding-horizontal ion-padding-vertical" id="btnRestablecer">
             Restablecer
           </button>
-          <button mat-raised-button color="primary" (click)="atras()">
+                    <button mat-raised-button color="primary" (click)="atras()">
             Atrás
           </button>
-        </form>
-      </div>
-    </ion-card>
+                </form>
+            </div>
+        </ion-card>
     </div>
 
 

@@ -233,28 +233,10 @@
   ],
   "posts": [
     {
-      "id": 1,
-      "title": "asd",
-      "body": "asd",
-      "userId": 1
-    },
-    {
-      "id": 2,
-      "title": "aqui",
-      "body": "alla",
-      "userId": 1
-    },
-    {
-      "id": 3,
-      "title": "test",
-      "body": "test",
-      "userId": 3
-    },
-    {
       "id": 4,
-      "title": "test1",
-      "body": "test1",
-      "tarifa": 123,
+      "title": "test2",
+      "body": "test2",
+      "tarifa": 1234,
       "userId": 2
     },
     {
